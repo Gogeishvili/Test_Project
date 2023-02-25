@@ -7,13 +7,13 @@ namespace Test_Project
     {
         public float scaleTime => _scaleTime;
         public Bullet bulletPref => _bulletPref;
-        public Color color => _color;
         public float minScaleValue => _minScaleValue;
+        public float initScale => _initScale; 
 
 
         [SerializeField] private float _scaleTime = 0.5f;
         [SerializeField] private Bullet _bulletPref;
-        [SerializeField] private Color _color;
         [SerializeField] private float _minScaleValue = 0.5f;
+        [SerializeField] private float _initScale = 2;
     }
 }

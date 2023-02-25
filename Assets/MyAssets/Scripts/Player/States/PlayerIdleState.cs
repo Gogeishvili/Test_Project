@@ -2,6 +2,8 @@ namespace Test_Project
 {
     public class PlayerIdleState : BaseState<Player>
     {
+        
+        
         public PlayerIdleState(Player i_main) : base(i_main)
         {
         }

@@ -13,10 +13,11 @@ namespace Test_Project
         public PlayerDeathState playerDeathState { get;private set; }
 
         
-        public PlayerStateMachine(Player i_main) : base(i_main)
+        public PlayerStateMachine(Player i_main,
+            StatesComponents iStatesComponents) : base(i_main)
         {
             playerIdleState = new PlayerIdleState(i_main);
-            playerActiveState = new PlayerActiveState(i_main);
+            playerActiveState = new PlayerActiveState(i_main,iStatesComponents.activeStateComponents);
             playerWinState = new PlayerWinState(i_main);
             playerDeathState = new PlayerDeathState(i_main);
             

@@ -2,50 +2,66 @@
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace Test_Project
 {
     public class Player : MonoBehaviour
     {
+        public PlayerStateMachine playerStateMachine { get;private set; }
+
+        [SerializeField] private StatesComponents _statesComponents;
         
-        [SerializeField] private Transform _visual;
-        [SerializeField] private PlayerData _playerData;
-        
-        private Vector3 _initScale;
-        private PlayerStateMachine _playerStateMachine;
 
         private void Awake()
         {
-           // _initScaleValue =_visual.localScale.x;
-            _playerStateMachine = new PlayerStateMachine(this);
-            
+            playerStateMachine = new PlayerStateMachine(this,_statesComponents);
         }
 
         private void Update()
         {
-            if (Input.GetMouseButton(0))
-            {
-                //_visual.localScale -= Vector3.one * (_scaleTime * Time.deltaTime);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                // float currentScaleValue = _visual.localScale.x;
-                // Bullet bullet = Instantiate(_bulletPref, transform.position, quaternion.identity);
-                // float scale = _initScaleValue - currentScaleValue;
-                // bullet.transform.localScale = new Vector3(scale, scale, scale);
-                // _initScaleValue = _visual.localScale.x;
-            }
-            
-          _playerStateMachine.currentState.Update();
+            playerStateMachine.currentState.Update();
         }
 
         [Button]
         public void ActiveState()
         {
-            _playerStateMachine.SwichState(_playerStateMachine.playerActiveState);
+            playerStateMachine.SwichState(playerStateMachine.playerActiveState);
         }
         
     }
+    
+    [System.Serializable]
+    public struct StatesComponents
+    {
+        public IdleStateComponents idleStateComponents => _idleStateComponents;
+        public ActiveComponents activeStateComponents => _activeStateComponents;
+        
+        
+        [SerializeField] private IdleStateComponents _idleStateComponents;
+        [SerializeField] private ActiveComponents _activeStateComponents;
+        
+        
+        [System.Serializable]
+        public struct IdleStateComponents
+        {
+            public Transform visual => _visual;
+            public PlayerData playerData => _playerData;
+        
+            [SerializeField] private Transform _visual;
+            [SerializeField] private PlayerData _playerData;
+        }
+        
+        [System.Serializable]
+        public struct ActiveComponents
+        {
+            public Transform visual => _visual;
+            public PlayerData playerData => _playerData;
+        
+            [SerializeField] private Transform _visual;
+            [SerializeField] private PlayerData _playerData;
+        }
+    }
 }
+

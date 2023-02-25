@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5b9beecdfeb435d9616b13ec1182c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scaleTime: 0.5
-  _visual: {fileID: 16293239134461026}
-  _bulletPref: {fileID: 6823071547307520414, guid: 29d615520164b4d2fa6a2ae285fb2eb6, type: 3}
-  _initScaleValue: 0
+  _statesComponents:
+    _idleStateComponents:
+      _visual: {fileID: 0}
+      _playerData: {fileID: 0}
+    _activeStateComponents:
+      _visual: {fileID: 16293239134461026}
+      _playerData: {fileID: 11400000, guid: b36bef38d3e7744e4b17bea75179a088, type: 2}
 --- !u!1 &16293237766078698
 GameObject:
   m_ObjectHideFlags: 0
