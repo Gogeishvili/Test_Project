@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleTime: 0.5
   _bulletPref: {fileID: 6823071547307520414, guid: 29d615520164b4d2fa6a2ae285fb2eb6, type: 3}
-  _color: {r: 1, g: 0.31804758, b: 0, a: 0}
   _minScaleValue: 0.5
-  _initScale: 2
+  _initScale: 3

@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5b9beecdfeb435d9616b13ec1182c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statesComponents:
+  _playerStatesComponents:
     _idleStateComponents:
-      _visual: {fileID: 0}
-      _playerData: {fileID: 0}
+      _visual: {fileID: 16293239134461026}
+      _playerData: {fileID: 11400000, guid: b36bef38d3e7744e4b17bea75179a088, type: 2}
     _activeStateComponents:
       _visual: {fileID: 16293239134461026}
       _playerData: {fileID: 11400000, guid: b36bef38d3e7744e4b17bea75179a088, type: 2}

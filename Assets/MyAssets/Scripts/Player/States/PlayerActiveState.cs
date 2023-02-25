@@ -7,12 +7,12 @@ namespace Test_Project
 {
     public  class PlayerActiveState : BaseState<Player>
     {
-        private StatesComponents.ActiveComponents _activeStateComponents;
+        private PlayerStatesComponents.ActiveComponents _activeStateComponents;
 
         private float _initScaleValue;
         
         public PlayerActiveState(Player i_main,
-            StatesComponents.ActiveComponents i_activeStateComponents ) : base(i_main)
+            PlayerStatesComponents.ActiveComponents i_activeStateComponents) : base(i_main)
         {
             _activeStateComponents = i_activeStateComponents;
         }
