@@ -69,7 +69,7 @@ namespace Test_Project
         private void Shoot()
         {
             _usedBullets += 1;
-            _uiManager.gameInfo.SetBullets(_levelManager.currentLevel.countOfBullest,_usedBullets);
+            _uiManager.gameInfo.SetBullets(_levelManager.currentLevel.countOfBullest, _usedBullets);
             float currentScaleValue = _activeStateComponents.playerVisual.localScale.x;
 
             Bullet bullet = GameObject.Instantiate(_activeStateComponents.playerData.bulletPref,
@@ -83,7 +83,7 @@ namespace Test_Project
 
             _initScaleValue = _activeStateComponents.playerVisual.localScale.x;
 
-            if (_usedBullets == _levelManager.currentLevel.countOfBullest)
+            if (_usedBullets >= _levelManager.currentLevel.countOfBullest)
             {
                 _main.playerStateMachine.SwichState(_main.playerStateMachine.playerDeathState);
             }
@@ -91,7 +91,8 @@ namespace Test_Project
 
         void Win()
         {
-            _main.playerStateMachine.SwichState(_main.playerStateMachine.playerWinState);
+            if (GameManager.gameOn)
+                _main.playerStateMachine.SwichState(_main.playerStateMachine.playerWinState);
         }
     }
 }

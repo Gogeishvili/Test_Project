@@ -16,11 +16,13 @@ namespace Test_Project
         [Inject] private LevelManager _levelManager;
         [Inject] private GameManager _gameManager;
         [Inject] private UiManager _uiManager;
+        [Inject] private CameraManager _cameraManager;
         
         private void Awake()
         {
             playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager,
-                _gameManager,_uiManager);
+                _gameManager,_uiManager,_cameraManager);
+            
         }
 
         private void Update()

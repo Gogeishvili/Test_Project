@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01b2f678232e493fac7ce3f0990f8b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1163424255826970243}
+  _deathMaterial: {fileID: 2100000, guid: e014d2b03db3949fab696062b146dd8e, type: 2}
+  _activeMaterial: {fileID: 2100000, guid: badb53189a6f84b71a61e97d0a9d65ad, type: 2}
   _visual: {fileID: 1163424254802558854}
   _collider: {fileID: 1386775969933690894}
 --- !u!136 &1386775969933690894

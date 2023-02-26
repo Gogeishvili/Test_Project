@@ -38,7 +38,7 @@ namespace Test_Project
             _layerMask = i_detectLayer;
             _visual.localScale = Vector3.one * i_scaleValue;
             _detectRadius = i_scaleValue * i_detectRadiusIncrenet;
-
+            
             transform.DOMove(i_bulletTarget, _shootSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Destroy(this.gameObject);
@@ -48,17 +48,23 @@ namespace Test_Project
         void DetectEnemy()
         {
             transform.DOKill();
-            Collider[] colliders = Physics.OverlapSphere(transform.position, _detectRadius, _layerMask);
-            if (colliders.Length > 0)
+            
+            if (GameManager.gameOn)
             {
-                for (int i = 0; i < colliders.Length; i++)
+                Collider[] colliders = Physics.OverlapSphere(transform.position, _detectRadius, _layerMask);
+                if (colliders.Length > 0)
                 {
-                    Enemy enemy = _levelManager.currentLevel.GetEnemyRef(colliders[i].gameObject);
-                    enemy?.TakeDamage();
+                    for (int i = 0; i < colliders.Length; i++)
+                    {
+                        Enemy enemy = _levelManager.currentLevel.GetEnemyRef(colliders[i].gameObject);
+                        enemy?.TakeDamage();
+                    }
                 }
             }
 
             Destroy(this.gameObject);
         }
+
+       
     }
 }
