@@ -27,8 +27,7 @@ namespace Test_Project
                 if (_currentLevel != null)
                     _currentLevel.On();
             }
-
-            _currentLevel.onLevelComplite += CompliteLevel;
+            
         }
         
         void CompliteLevel()

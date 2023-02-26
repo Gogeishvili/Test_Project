@@ -23,7 +23,7 @@ namespace Test_Project
             {
                 _main.transform.DOJump(_finish.playerOnFinishPoint.position, 3, 1, 0.5f).OnComplete(() =>
                 {
-
+                    
                 });
             });
         }
