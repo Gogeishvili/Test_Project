@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using Zenject;
+using DG.Tweening;
 
 namespace Test_Project
 {
@@ -17,6 +18,7 @@ namespace Test_Project
         private void Awake()
         {
             OnGameLoad();
+            DOTween.SetTweensCapacity(1000, 500);
         }
 
         private void OnGameLoad()

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Test_Project
 {
@@ -11,13 +13,14 @@ namespace Test_Project
         [SerializeField] private Material _deathMaterial,_activeMaterial;
         [SerializeField] private Transform _visual;
         [SerializeField] private Collider _collider;
-        
+        [SerializeField] private List<EnemyFracture> _enemyFractures = new List<EnemyFracture>();
+
         public void TakeDamage()
         {
             _collider.enabled = false;
             _meshRenderer.material = _deathMaterial;
             
-            this.Invoke(Explosion,1f);
+            this.Invoke(Explosion,0.5f);
             
         }
 
@@ -25,6 +28,10 @@ namespace Test_Project
         {
             _visual.gameObject.SetActive(false);
             onEnemyDeathEvent?.Invoke(this);
+            foreach (var enemyFracture in _enemyFractures)
+            {
+                enemyFracture.ExplisionEffect();
+            }
         }
 
         public void ResetEnemy()
@@ -32,6 +39,10 @@ namespace Test_Project
             _visual.gameObject.SetActive(true);
             _collider.enabled = true;
             _meshRenderer.material = _activeMaterial;
+            foreach (var enemyFracture in _enemyFractures)
+            {
+                enemyFracture.ResetPostion();
+            }
         }
         
         
