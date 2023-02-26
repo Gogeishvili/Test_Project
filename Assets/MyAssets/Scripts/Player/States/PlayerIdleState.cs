@@ -21,7 +21,7 @@ namespace Test_Project
         
         public override void Enter()
         {
-            
+            _main.transform.position = _levelManager.currentLevel.playerStaypoint.position;
             _idleStateComponents.playerVisual.localScale =Vector3.one * _idleStateComponents.playerData.initScale;
             _levelManager.currentLevel.LevelPath.SetScale(_idleStateComponents.playerData.initScale);
         }

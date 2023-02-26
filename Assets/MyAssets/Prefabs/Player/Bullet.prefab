@@ -192,5 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _visual: {fileID: 7753026397841969394}
-  _shootSpeed: 0.5
+  _shootSpeed: 2
   _enemyDetectCollider: {fileID: 7753026396762879603}
+  _detectRadius: 0
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0

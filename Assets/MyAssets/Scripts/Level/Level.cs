@@ -18,8 +18,11 @@ namespace Test_Project
         public Vector3 bulletTarget => _bulletTarget.position;
         public LevelPath LevelPath => _levelPath;
         public int level => _level;
+        public int countOfBullest => _countOfBullets;
+        public Transform playerStaypoint => _playerStayPoint;
 
 
+        [SerializeField] private int _countOfBullets = 10;
         [SerializeField] private Finish _finish;
         [SerializeField] private LevelPath _levelPath;
         [SerializeField] private int _level = 1;
@@ -27,6 +30,7 @@ namespace Test_Project
         [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
         [SerializeField] private Collider _playerPathCollider;
         [SerializeField] private List<Enemy> _enemiesOnPath = new List<Enemy>();
+        [SerializeField] private Transform _playerStayPoint;
 
 
 
@@ -54,9 +58,11 @@ namespace Test_Project
                 .Subscribe(c =>
                 {
                     Enemy enemy = _allEnemiesDictionaty[c.gameObject];
-                    _enemiesOnPathDictionaty.Add(enemy.gameObject,enemy);
-                    _enemiesOnPath.Add(enemy);
-                   
+                    if (!_enemiesOnPathDictionaty.ContainsKey(enemy.gameObject))
+                    {
+                        _enemiesOnPathDictionaty.Add(enemy.gameObject, enemy);
+                        _enemiesOnPath.Add(enemy);
+                    }
                 });
         }
         

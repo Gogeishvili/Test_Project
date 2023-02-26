@@ -14,12 +14,13 @@ namespace Test_Project
 
         public PlayerStateMachine(Player i_main,
             PlayerStatesComponents i_playerStatesComponents,
-            LevelManager i_levelManager) : base(i_main)
+            LevelManager i_levelManager,
+            GameManager i_gameManager) : base(i_main)
         {
             playerIdleState = new PlayerIdleState(i_main, i_playerStatesComponents.idleStateComponents,i_levelManager);
             playerActiveState = new PlayerActiveState(i_main, i_playerStatesComponents.activeStateComponents,i_levelManager);
-            playerWinState = new PlayerWinState(i_main,i_levelManager);
-            playerDeathState = new PlayerDeathState(i_main);
+            playerWinState = new PlayerWinState(i_main,i_levelManager,i_gameManager);
+            playerDeathState = new PlayerDeathState(i_main,i_gameManager);
 
             SwichState(playerIdleState);
         }

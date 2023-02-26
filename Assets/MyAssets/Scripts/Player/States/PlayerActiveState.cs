@@ -12,6 +12,7 @@ namespace Test_Project
 
         
         private float _initScaleValue;
+        private int _usedBullets = 0;
         
         public PlayerActiveState(Player i_main,
             PlayerStatesComponents.ActiveComponents i_activeStateComponents,
@@ -23,6 +24,7 @@ namespace Test_Project
 
         public override void Enter()
         {
+            _usedBullets = 0;
             _initScaleValue = _activeStateComponents.playerVisual.localScale.x;
 
             _levelManager.currentLevel.onLevelComplite += (() =>
@@ -65,6 +67,7 @@ namespace Test_Project
 
         private void Shoot()
         {
+            _usedBullets += 1;
             float currentScaleValue = _activeStateComponents.playerVisual.localScale.x;
             
             Bullet bullet = GameObject.Instantiate(_activeStateComponents.playerData.bulletPref, 
@@ -76,6 +79,11 @@ namespace Test_Project
                 _activeStateComponents.playerData.enemylayer,_activeStateComponents.playerData.enemyDetectRadiusIncrement);
             
             _initScaleValue = _activeStateComponents.playerVisual.localScale.x;
+
+            if (_usedBullets == _levelManager.currentLevel.countOfBullest)
+            {
+                _main.playerStateMachine.SwichState(_main.playerStateMachine.playerDeathState);
+            }
         }
     }
 }

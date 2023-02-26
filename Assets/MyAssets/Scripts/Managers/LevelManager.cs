@@ -30,7 +30,7 @@ namespace Test_Project
             
         }
         
-        void CompliteLevel()
+        public void CompliteLevel()
         {
             PlayerPrefs.SetInt("Level", _currentlevelIndex += 1);
         }

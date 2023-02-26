@@ -6,12 +6,17 @@ namespace Test_Project
 {
     public  class PlayerWinState : BaseState<Player>
     {
-        private LevelManager _levelManager;
+        private readonly LevelManager _levelManager;
+        private readonly GameManager _gameManager;
         private Finish _finish;
+        
+        
         public PlayerWinState(Player i_main,
-            LevelManager i_levelManager) : base(i_main)
+            LevelManager i_levelManager,
+            GameManager i_gameManager) : base(i_main)
         {
             _levelManager = i_levelManager;
+            _gameManager = i_gameManager;
         }
 
         public override void Enter()
@@ -23,7 +28,7 @@ namespace Test_Project
             {
                 _main.transform.DOJump(_finish.playerOnFinishPoint.position, 3, 1, 0.5f).OnComplete(() =>
                 {
-                    
+                    _gameManager.Win();
                 });
             });
         }

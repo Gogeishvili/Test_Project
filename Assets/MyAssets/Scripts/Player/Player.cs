@@ -14,21 +14,17 @@ namespace Test_Project
         [SerializeField] private PlayerStatesComponents _playerStatesComponents;
         
         [Inject] private LevelManager _levelManager;
+        [Inject] private GameManager _gameManager;
         
         private void Awake()
         {
-            playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager);
+            playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager,
+                _gameManager);
         }
 
         private void Update()
         {
             playerStateMachine.currentState.Update();
-        }
-
-        [Button]
-        public void ActiveState()
-        {
-            playerStateMachine.SwichState(playerStateMachine.playerActiveState);
         }
         
     }
