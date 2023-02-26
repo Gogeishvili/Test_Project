@@ -23,8 +23,16 @@ namespace Test_Project
         {
             _levelManager.LoadLevel();
         }
-        
-        
+
+        public void StartgGame()
+        {
+            
+        }
+
+        public void WinGame()
+        {
+            
+        }
         
         public void Lose()
         {

@@ -18,7 +18,7 @@ namespace Test_Project
         {
             playerIdleState = new PlayerIdleState(i_main, i_playerStatesComponents.idleStateComponents,i_levelManager);
             playerActiveState = new PlayerActiveState(i_main, i_playerStatesComponents.activeStateComponents,i_levelManager);
-            playerWinState = new PlayerWinState(i_main);
+            playerWinState = new PlayerWinState(i_main,i_levelManager);
             playerDeathState = new PlayerDeathState(i_main);
 
             SwichState(playerIdleState);

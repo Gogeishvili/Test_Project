@@ -24,6 +24,11 @@ namespace Test_Project
         public override void Enter()
         {
             _initScaleValue = _activeStateComponents.playerVisual.localScale.x;
+
+            _levelManager.currentLevel.onLevelComplite += (() =>
+            {
+                _main.playerStateMachine.SwichState(_main.playerStateMachine.playerWinState);
+            });
         }
 
         public override void Update()
@@ -41,7 +46,10 @@ namespace Test_Project
 
         public override void Exit()
         {
-           
+            _levelManager.currentLevel.onLevelComplite -= (() =>
+            {
+                _main.playerStateMachine.SwichState(_main.playerStateMachine.playerWinState);
+            });
         }
 
         private void GenerateBullet()

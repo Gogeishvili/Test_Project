@@ -1,6 +1,4 @@
 using UnityEngine;
-using Zenject;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Test_Project
@@ -18,10 +16,22 @@ namespace Test_Project
             _currentlevelIndex = PlayerPrefs.GetInt("Level", 1);
             _currentLevel?.Off();
             _currentLevel = _levels.Find(l => _currentlevelIndex == l.level);
-            _currentLevel?.On();
+            if (_currentLevel != null)
+                _currentLevel.On();
+
+            else
+            {
+                PlayerPrefs.SetInt("Level", 1);
+                _currentlevelIndex = PlayerPrefs.GetInt("Level", 1);
+                _currentLevel = _levels.Find(l => _currentlevelIndex == l.level);
+                if (_currentLevel != null)
+                    _currentLevel.On();
+            }
+
+            _currentLevel.onLevelComplite += CompliteLevel;
         }
         
-        public void CompliteLevel()
+        void CompliteLevel()
         {
             PlayerPrefs.SetInt("Level", _currentlevelIndex += 1);
         }
