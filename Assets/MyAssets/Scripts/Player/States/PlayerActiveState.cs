@@ -7,6 +7,7 @@ namespace Test_Project
     {
         private readonly PlayerStatesComponents.ActiveComponents _activeStateComponents;
         private readonly LevelManager _levelManager;
+        private readonly UiManager _uiManager;
 
 
         private float _initScaleValue;
@@ -15,10 +16,12 @@ namespace Test_Project
 
         public PlayerActiveState(Player i_main,
             PlayerStatesComponents.ActiveComponents i_activeStateComponents,
-            LevelManager i_levelManager) : base(i_main)
+            LevelManager i_levelManager,
+            UiManager i_uiManager) : base(i_main)
         {
             _activeStateComponents = i_activeStateComponents;
             _levelManager = i_levelManager;
+            _uiManager = i_uiManager;
         }
 
         public override void Enter()
@@ -47,7 +50,7 @@ namespace Test_Project
 
         public override void Exit()
         {
-            
+            _levelManager.currentLevel.onLevelComplite -= Win;
             _touched = false;
         }
 
@@ -66,6 +69,7 @@ namespace Test_Project
         private void Shoot()
         {
             _usedBullets += 1;
+            _uiManager.gameInfo.SetBullets(_levelManager.currentLevel.countOfBullest,_usedBullets);
             float currentScaleValue = _activeStateComponents.playerVisual.localScale.x;
 
             Bullet bullet = GameObject.Instantiate(_activeStateComponents.playerData.bulletPref,

@@ -15,18 +15,18 @@ namespace Test_Project
         
         [Inject] private LevelManager _levelManager;
         [Inject] private GameManager _gameManager;
+        [Inject] private UiManager _uiManager;
         
         private void Awake()
         {
             playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager,
-                _gameManager);
+                _gameManager,_uiManager);
         }
 
         private void Update()
         {
             playerStateMachine.currentState.Update();
         }
-        
     }
 
     #region Components

@@ -8,12 +8,14 @@ namespace Test_Project
 {
     public class UiManager : MonoBehaviour
     {
+        public GameInfo gameInfo => _gameInfo;
         public MenuUI menuUI { get; private set; }
         public InGameUI inGameUI { get; private set; }
         public WinUI winUI { get; private set; }
         public LoseUI loseUI { get; private set; }
 
 
+        [SerializeField] private GameInfo _gameInfo;
         [SerializeField] List<GameObject> _menuUIGameObjects;
         [SerializeField] List<GameObject> _inGameUIGameObjects;
         [SerializeField] List<GameObject> _winUIGameObjects;

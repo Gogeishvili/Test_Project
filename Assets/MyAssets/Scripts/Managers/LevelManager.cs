@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Zenject;
 
 namespace Test_Project
 {
@@ -10,6 +11,8 @@ namespace Test_Project
         [SerializeField] List<Level> _levels = new List<Level>();
         [SerializeField] Level _currentLevel;
         [SerializeField] int _currentlevelIndex;
+
+        [Inject] private UiManager _uiManager;
         
         public void LoadLevel()
         {
@@ -28,6 +31,9 @@ namespace Test_Project
                     _currentLevel.On();
             }
             
+            _uiManager.gameInfo.SetLevel(_currentLevel.level);
+            _uiManager.gameInfo.SetBullets(_currentLevel.countOfBullest, 0);
+
         }
         
         public void CompliteLevel()

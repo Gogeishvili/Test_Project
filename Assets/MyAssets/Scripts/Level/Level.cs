@@ -35,48 +35,52 @@ namespace Test_Project
 
 
 
-      
-        private readonly Dictionary<GameObject, Enemy> _allEnemiesDictionaty = new Dictionary<GameObject, Enemy>();
-        private readonly Dictionary<GameObject, Enemy> _enemiesOnPathDictionaty = new Dictionary<GameObject, Enemy>();
-
         [Inject] private GameManager _gameManager;
-        
+
+        private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
+        private readonly Dictionary<GameObject, Enemy> _allEnemiesDictionaty = new Dictionary<GameObject, Enemy>();
+        private bool _completed;
         
         public void On()
         {
             gameObject.SetActive(true);
-
+            _completed = false;
             _allEnemiesDictionaty.Clear();
-            _enemiesOnPathDictionaty.Clear();
-            
+            _enemiesOnPath.Clear();
+
             foreach (var enemy in _enemies)
             {
                 enemy.ResetEnemy();
                 enemy.onEnemyDeathEvent += RemoveEnemy;
-                _allEnemiesDictionaty.Add(enemy.gameObject,enemy);
+                _allEnemiesDictionaty.Add(enemy.gameObject, enemy);
             }
-            
-            _playerPathCollider.OnTriggerEnterAsObservable().Where(c => c.gameObject.layer 
+
+            _playerPathCollider.OnTriggerEnterAsObservable().Where(c => c.gameObject.layer
                                                                         == MyStatics.ENEMY_LAYER)
                 .Subscribe(c =>
                 {
                     Enemy enemy = _allEnemiesDictionaty[c.gameObject];
-                    if (!_enemiesOnPathDictionaty.ContainsKey(enemy.gameObject))
-                    {
-                        _enemiesOnPathDictionaty.Add(enemy.gameObject, enemy);
-                        _enemiesOnPath.Add(enemy);
-                    }
-                });
+                    _enemiesOnPath.Add(enemy);
+                }).AddTo(_compositeDisposable);
+            
+            _playerPathCollider.OnTriggerExitAsObservable().Where(c => c.gameObject.layer
+                                                                        == MyStatics.ENEMY_LAYER)
+                .Subscribe(c =>
+                {
+                    Enemy enemy = _allEnemiesDictionaty[c.gameObject];
+                    RemoEnemyFromPath(enemy);
+                    
+                }).AddTo(_compositeDisposable);
         }
-        
+
         public void Off()
         {
             foreach (var enemy in _enemies)
             {
                 enemy.ResetEnemy();
             }
+            _compositeDisposable.Clear();
             gameObject.SetActive(false);
-            
         }
 
         void RemoveEnemy(Enemy i_enemy)
@@ -86,16 +90,22 @@ namespace Test_Project
                 i_enemy.onEnemyDeathEvent -= RemoveEnemy;
                 _allEnemiesDictionaty.Remove(i_enemy.gameObject);
             }
-            if (_enemiesOnPathDictionaty.ContainsKey(i_enemy.gameObject))
+
+            RemoEnemyFromPath(i_enemy);
+        }
+
+        void RemoEnemyFromPath(Enemy i_enemy)
+        {
+            _enemiesOnPath.Remove(i_enemy);
+            i_enemy.onEnemyDeathEvent -= RemoveEnemy;
+            if (_enemiesOnPath.Count == 0)
             {
-                i_enemy.onEnemyDeathEvent -= RemoveEnemy;
-                _enemiesOnPathDictionaty.Remove(i_enemy.gameObject);
-                if (_enemiesOnPathDictionaty.Count <= 0)
+                if (_completed == false)
                 {
+                    _completed = true;
                     onLevelComplite?.Invoke();
-                    
                     Debug.Log("Level Done");
-                } 
+                }
             }
         }
 
@@ -106,12 +116,11 @@ namespace Test_Project
             {
                 VARIABLE.TakeDamage();
             }
-            
         }
-        
+
         public Enemy GetEnemyRef(GameObject i_key)
         {
-            Enemy enemy=null;
+            Enemy enemy = null;
             if (_allEnemiesDictionaty.ContainsKey(i_key))
             {
                 enemy = _allEnemiesDictionaty[i_key];
@@ -119,6 +128,5 @@ namespace Test_Project
 
             return enemy;
         }
-
     }
 }
