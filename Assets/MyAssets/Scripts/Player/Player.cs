@@ -13,9 +13,11 @@ namespace Test_Project
 
         [SerializeField] private PlayerStatesComponents _playerStatesComponents;
         
+        [Inject] private LevelManager _levelManager;
+        
         private void Awake()
         {
-            playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents);
+            playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager);
         }
 
         private void Update()
@@ -44,24 +46,35 @@ namespace Test_Project
         [SerializeField] private ActiveComponents _activeStateComponents;
 
 
+       
+        
+        
         [System.Serializable]
         public struct IdleStateComponents
         {
-            public Transform visual => _visual;
+            public Transform playerVisual => _playerVisual;
             public PlayerData playerData => _playerData;
+           
 
-            [SerializeField] private Transform _visual;
+            
+            
+            [SerializeField] private Transform _playerVisual;
             [SerializeField] private PlayerData _playerData;
+            
         }
 
         [System.Serializable]
         public struct ActiveComponents
         {
-            public Transform visual => _visual;
+            public Transform playerVisual => _playerVisual;
             public PlayerData playerData => _playerData;
+            
 
-            [SerializeField] private Transform _visual;
+            
+
+            [SerializeField] private Transform _playerVisual;
             [SerializeField] private PlayerData _playerData;
+            
         }
     }
     #endregion 
