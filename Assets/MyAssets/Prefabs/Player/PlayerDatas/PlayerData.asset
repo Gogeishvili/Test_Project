@@ -16,3 +16,7 @@ MonoBehaviour:
   _bulletPref: {fileID: 6823071547307520414, guid: 29d615520164b4d2fa6a2ae285fb2eb6, type: 3}
   _minScaleValue: 0.5
   _initScale: 3
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _enemyDetectRadiusIncrement: 2

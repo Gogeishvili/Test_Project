@@ -46,9 +46,6 @@ namespace Test_Project
         [SerializeField] private ActiveComponents _activeStateComponents;
 
 
-       
-        
-        
         [System.Serializable]
         public struct IdleStateComponents
         {
@@ -56,7 +53,6 @@ namespace Test_Project
             public PlayerData playerData => _playerData;
            
 
-            
             
             [SerializeField] private Transform _playerVisual;
             [SerializeField] private PlayerData _playerData;
@@ -68,8 +64,6 @@ namespace Test_Project
         {
             public Transform playerVisual => _playerVisual;
             public PlayerData playerData => _playerData;
-            
-
             
 
             [SerializeField] private Transform _playerVisual;

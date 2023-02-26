@@ -58,10 +58,15 @@ namespace Test_Project
         private void Shoot()
         {
             float currentScaleValue = _activeStateComponents.playerVisual.localScale.x;
+            
             Bullet bullet = GameObject.Instantiate(_activeStateComponents.playerData.bulletPref, 
                 _main.transform.position, quaternion.identity);
+            
             float scale = _initScaleValue - currentScaleValue;
-            bullet.Init(scale,_levelManager.currentLevel.bulletTarget,_levelManager);
+            
+            bullet.Init(scale,_levelManager.currentLevel.bulletTarget,_levelManager,
+                _activeStateComponents.playerData.enemylayer,_activeStateComponents.playerData.enemyDetectRadiusIncrement);
+            
             _initScaleValue = _activeStateComponents.playerVisual.localScale.x;
         }
     }
