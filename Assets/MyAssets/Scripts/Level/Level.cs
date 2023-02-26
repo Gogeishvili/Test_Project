@@ -6,6 +6,7 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine.Serialization;
+using Zenject;
 
 
 namespace Test_Project
@@ -37,6 +38,8 @@ namespace Test_Project
       
         private readonly Dictionary<GameObject, Enemy> _allEnemiesDictionaty = new Dictionary<GameObject, Enemy>();
         private readonly Dictionary<GameObject, Enemy> _enemiesOnPathDictionaty = new Dictionary<GameObject, Enemy>();
+
+        [Inject] private GameManager _gameManager;
         
         
         public void On()
@@ -90,6 +93,8 @@ namespace Test_Project
                 if (_enemiesOnPathDictionaty.Count <= 0)
                 {
                     onLevelComplite?.Invoke();
+                    
+                    Debug.Log("Level Done");
                 } 
             }
         }

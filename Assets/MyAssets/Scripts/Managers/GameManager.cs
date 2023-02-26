@@ -34,6 +34,7 @@ namespace Test_Project
         {
             _uiManager.SwitchUI(_uiManager.winUI);
             _levelManager.CompliteLevel();
+            
         }
 
         public void Lose()
@@ -44,16 +45,16 @@ namespace Test_Project
         {
             _levelManager.LoadLevel();
             _player.playerStateMachine.SwichState(_player.playerStateMachine.playerIdleState);
-            _player.playerStateMachine.SwichState(_player.playerStateMachine.playerActiveState);
             _uiManager.SwitchUI(_uiManager.inGameUI);
+            _player.playerStateMachine.SwichState(_player.playerStateMachine.playerActiveState);
         }
         
         public void PlayAgain()
         {
             _levelManager.LoadLevel();
             _player.playerStateMachine.SwichState(_player.playerStateMachine.playerIdleState);
-            _player.playerStateMachine.SwichState(_player.playerStateMachine.playerActiveState);
             _uiManager.SwitchUI(_uiManager.inGameUI);
+            _player.playerStateMachine.SwichState(_player.playerStateMachine.playerActiveState);
         }
         
     }

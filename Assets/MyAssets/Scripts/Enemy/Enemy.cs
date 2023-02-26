@@ -14,7 +14,6 @@ namespace Test_Project
         
         public void TakeDamage()
         {
-            Debug.Log("take enemy damage");
             _visual.gameObject.SetActive(false);
             _collider.enabled = false;
             onEnemyDeathEvent?.Invoke(this);
