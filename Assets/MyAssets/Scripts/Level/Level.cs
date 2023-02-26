@@ -30,7 +30,6 @@ namespace Test_Project
         [SerializeField] private Transform _bulletTarget;
         [SerializeField] private List<Enemy> _enemies = new List<Enemy>();
         [SerializeField] private Collider _playerPathCollider;
-        [SerializeField] private List<Enemy> _enemiesOnPath = new List<Enemy>();
         [SerializeField] private Transform _playerStayPoint;
 
 
@@ -40,6 +39,7 @@ namespace Test_Project
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private readonly Dictionary<GameObject, Enemy> _allEnemiesDictionaty = new Dictionary<GameObject, Enemy>();
         private bool _completed;
+        private readonly List<Enemy> _enemiesOnPath = new List<Enemy>();
         
         public void On()
         {
@@ -104,20 +104,10 @@ namespace Test_Project
                 {
                     _completed = true;
                     onLevelComplite?.Invoke();
-                    Debug.Log("Level Done");
                 }
             }
         }
-
-        [Button]
-        public void TestCompliteLevel()
-        {
-            foreach (var VARIABLE in _enemiesOnPath)
-            {
-                VARIABLE.TakeDamage();
-            }
-        }
-
+        
         public Enemy GetEnemyRef(GameObject i_key)
         {
             Enemy enemy = null;

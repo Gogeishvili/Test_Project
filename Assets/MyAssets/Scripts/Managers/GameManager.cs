@@ -25,7 +25,6 @@ namespace Test_Project
         {
             _levelManager.LoadLevel();
             _uiManager.SwitchUI(_uiManager.menuUI);
-            _player.playerStateMachine.SwichState(_player.playerStateMachine.playerIdleState);
             _cameraManager.SwichCamera(_cameraManager.menuCamera);
             gameOn = false;
         }

@@ -21,7 +21,7 @@ namespace Test_Project
             transform.DOLocalJump(dropPoint, 3, 1, 0.35f).SetEase(Ease.Linear);
         }
 
-        public void ResetPostion()
+        public void ResetEnemyFracture()
         {
             gameObject.SetActive(false);
             transform.localPosition = _initLocalPosition;

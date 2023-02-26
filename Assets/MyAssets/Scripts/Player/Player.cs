@@ -18,11 +18,12 @@ namespace Test_Project
         [Inject] private UiManager _uiManager;
         [Inject] private CameraManager _cameraManager;
         
-        private void Awake()
+        private void Start()
         {
             playerStateMachine = new PlayerStateMachine(this, _playerStatesComponents,_levelManager,
                 _gameManager,_uiManager,_cameraManager);
             
+            playerStateMachine.SwichState(playerStateMachine.playerIdleState);
         }
 
         private void Update()

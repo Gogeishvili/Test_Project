@@ -13,7 +13,7 @@ namespace Test_Project
         [SerializeField] private Animator _animator;
         
         
-        BaseMode<Animator> _currentUI;
+        BaseMode<Animator> _currentCamera;
         
         private void Awake()
         {
@@ -24,9 +24,9 @@ namespace Test_Project
         
         public void SwichCamera(BaseMode<Animator> i_baseUI)
         {
-            _currentUI?.Off();
-            _currentUI = i_baseUI;
-            _currentUI?.On();
+            _currentCamera?.Off();
+            _currentCamera = i_baseUI;
+            _currentCamera?.On();
         }
     }
 }

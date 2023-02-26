@@ -9,10 +9,12 @@ namespace Test_Project
         public Level currentLevel => _currentLevel;
         
         [SerializeField] List<Level> _levels = new List<Level>();
-        [SerializeField] Level _currentLevel;
-        [SerializeField] int _currentlevelIndex;
+        
 
         [Inject] private UiManager _uiManager;
+        
+        Level _currentLevel;
+        int _currentlevelIndex;
         
         public void LoadLevel()
         {

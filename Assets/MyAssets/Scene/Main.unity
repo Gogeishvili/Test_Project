@@ -3946,7 +3946,6 @@ MonoBehaviour:
   - {fileID: 658053242}
   - {fileID: 894850801}
   _playerPathCollider: {fileID: 1966255611}
-  _enemiesOnPath: []
   _playerStayPoint: {fileID: 926374004}
 --- !u!1 &675392543
 GameObject:
@@ -4312,7 +4311,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -11833,8 +11832,6 @@ MonoBehaviour:
   _levels:
   - {fileID: 1981757782}
   - {fileID: 661732718}
-  _currentLevel: {fileID: 1981757782}
-  _currentlevelIndex: 0
 --- !u!1 &1732394744
 GameObject:
   m_ObjectHideFlags: 0
@@ -13796,7 +13793,6 @@ MonoBehaviour:
   - {fileID: 1964297911}
   - {fileID: 1594501682}
   _playerPathCollider: {fileID: 16293239379882448}
-  _enemiesOnPath: []
   _playerStayPoint: {fileID: 1960949964}
 --- !u!1001 &1984719806
 PrefabInstance:

@@ -41,7 +41,7 @@ namespace Test_Project
             _meshRenderer.material = _activeMaterial;
             foreach (var enemyFracture in _enemyFractures)
             {
-                enemyFracture.ResetPostion();
+                enemyFracture.ResetEnemyFracture();
             }
         }
         
