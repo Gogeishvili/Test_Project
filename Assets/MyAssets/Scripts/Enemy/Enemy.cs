@@ -30,7 +30,7 @@ namespace Test_Project
             onEnemyDeathEvent?.Invoke(this);
             foreach (var enemyFracture in _enemyFractures)
             {
-                enemyFracture.ExplisionEffect();
+                enemyFracture.ExplosionEffect();
             }
         }
 

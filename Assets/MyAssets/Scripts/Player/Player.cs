@@ -32,7 +32,6 @@ namespace Test_Project
         }
     }
 
-    #region Components
     
     [System.Serializable]
     public struct PlayerStatesComponents
@@ -70,5 +69,4 @@ namespace Test_Project
             
         }
     }
-    #endregion 
 }

@@ -13,7 +13,7 @@ namespace Test_Project
             _initLocalPosition = transform.localPosition;
         }
 
-        public void ExplisionEffect()
+        public void ExplosionEffect()
         {
             gameObject.SetActive(true);
             Vector3 dropPoint = new Vector3(transform.localPosition.x + Random.Range(-0.5f, 0.5f), 
